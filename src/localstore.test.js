@@ -32,4 +32,16 @@ describe('Add Method', () => {
   });
 });
 
+describe('Remove Method', () => {
+  test('Remove from the list', () => {
+    expect(localstore.remove({ target: { index: '1' } })).toBe(5);
+  });
 
+  test('Remove one new item from the list', () => {
+    myhtml();
+    localstore.displayList();
+    localstore.remove({ target: { index: '1' } });
+    const list = document.querySelectorAll('.todoItem');
+    expect(list).toHaveLength(4);
+  });
+});
