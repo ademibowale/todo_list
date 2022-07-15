@@ -45,3 +45,54 @@ describe('Remove Method', () => {
     expect(list).toHaveLength(4);
   });
 });
+
+describe('Editing Method', () => {
+  test('Edit item from the list', () => {
+    expect(localstore.edit({ target: { index: '0', value: 'New Task' } })).toBe(
+      'New Task',
+    );
+  });
+
+  test('Edit one item from the list', () => {
+    myhtml();
+    localstore.displayList();
+    localstore.edit({ target: { index: '0', value: 'New Task 2' } });
+    localstore.renderUI();
+    const input = document.querySelector('.description');
+    expect(input.value).toBe('New Task 2');
+  });
+});
+
+describe('Complete Method', () => {
+  test('Complete item from the list', () => {
+    expect(
+      localstore.completed({ target: { index: '0', completed: true } }),
+    ).toBeTruthy();
+  });
+
+  test('Complete one item from the list', () => {
+    myhtml();
+
+    localstore.displayList();
+    localstore.completed({ target: { index: '0', completed: true } });
+    localstore.renderUI();
+    const input = document.querySelector('.checkbox');
+    expect(input.checked).toBeTruthy();
+  });
+});
+
+describe('clearAllCompleted Method', () => {
+  test('clearAllCompleted item from the list', () => {
+    expect(localstore.clearAllCompleted()).toBe(3);
+  });
+
+  test('Complete one item from the list', () => {
+    myhtml();
+
+    localstore.displayList();
+    localstore.clearAllCompleted();
+    localstore.renderUI();
+    const list = document.querySelectorAll('.todoItem');
+    expect(list).toHaveLength(3);
+  });
+});
