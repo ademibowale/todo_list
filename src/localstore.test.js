@@ -45,3 +45,20 @@ describe('Remove Method', () => {
     expect(list).toHaveLength(4);
   });
 });
+
+describe('Editing Method', () => {
+  test('Edit item from the list', () => {
+    expect(localstore.edit({ target: { index: '0', value: 'New Task' } })).toBe(
+      'New Task',
+    );
+  });
+
+  test('Edit one item from the list', () => {
+    myhtml();
+    localstore.displayList();
+    localstore.edit({ target: { index: '0', value: 'New Task 2' } });
+    localstore.renderUI();
+    const input = document.querySelector('.description');
+    expect(input.value).toBe('New Task 2');
+  });
+});
