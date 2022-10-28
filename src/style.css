@@ -1,5 +1,6 @@
 body {
   background-color: #008000;
+  box-sizing: border-box;
 }
 
 #todo-list {
@@ -38,7 +39,7 @@ input:focus {
   outline: none !important;
 }
 
-input[type=checkbox] {
+input[type='checkbox'] {
   margin-right: 10px;
   cursor: pointer;
 }
